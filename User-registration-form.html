@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  
+    <title>Main reg </title>
+</head>
+<body>
+<br>
+    <div class="container">
+        <div class="tabs">
+            <button type="button" class="btn btn-primary btn-lg active" style="background-color: aliceblue;" ><a href="./userregform.html">User Registration Form</a></button>
+            <button type="button" class="btn btn-primary btn-lg " style="background-color: aliceblue;"><a href="up.html">User Detail</a></button>
+        </div>
+        <br>
+    <div class="container-fluid">
+          
+        <form class="w-25 p-3" style="background-color: #eee;width: 35%;" method="get">
+              
+          <div class="form-group">
+            <label>FirstName:</label>
+            <input type="text" name="FirstName" class="form-control"   required="">
+          </div>
+          <div class="form-group">
+              <label>LastName:</label>
+              <input type="text" name="LastName" class="form-control"  required="">
+            </div>
+            <div class="form-group">
+              <label>MobileNo:</label>
+              <input type="tel" name="MobileNo" class="form-control"  required="">
+            </div>
+          
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="text" name="Email" class="form-control"   required="">
+          </div>
+          <div class="form-group">
+              <label>DOB:</label>
+              <input type="date" name="DOB" class="form-control"  required="">
+            </div>
+            <div class="form-group">
+              <label>Qualification:</label>
+              <input type="text" name="Qualification" class="form-control"  required="">
+            </div>
+        
+            <button type="submit" class="btn btn-success save-btn">Save</button>
+          <button type="reset" class='btn btn-danger '>clear</button></td></tr>
+          
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered data-table">
+      <thead>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>MobileNo</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Qualification</th>
+        <th width="200px">Action</th>
+      </thead>
+      <tbody>
+      
+      </tbody>
+    </table>
+     
+  </div>
+    <script type="text/javascript">
+   
+      $("form").submit(function(e){
+          e.preventDefault();
+          var FirstName = $("input[name='FirstName']").val();
+          var LastName = $("input[name='LastName']").val();
+          var MobileNo = $("input[name='MobileNo']").val();
+          var Email = $("input[name='Email']").val();
+          var DOB = $("input[name='DOB']").val();
+          var Qualification = $("input[name='Qualification']").val();
+       
+          $(".data-table tbody").append("<tr data-FirstName='"+name+"' data-LastName='"+name+"' data-MobileNo='"+MobileNo+"' data-Email='"+Email+"' data-DOB='"+DOB+"' data-Qualification='"+Qualification+"'><td>"+FirstName+"</td><td>"+LastName+"</td><td>"+MobileNo+"</td><td>"+Email+"</td><td>"+DOB+"</td><td>"+Qualification+"</td><td><button class='btn btn-info btn-xs btn-edit'>Edit</button><button class='btn btn-danger btn-xs btn-delete'>Delete</button></td></tr>");
+      
+          $("input[name='FirstName']").val();
+          $("input[name='LastName']").val();
+          $("input[name='MobileNo']").val();
+          $("input[name='Email']").val();
+          $("input[name='DOB']").val();
+          $("input[name='Qualification']").val();
+      });
+     
+      $("body").on("click", ".btn-delete", function(){
+          $(this).parents("tr").remove();
+      });
+      
+      $("body").on("click", ".btn-edit", function(){
+          var FirstName = $(this).parents("tr").attr('data-FirstName');
+          var LastName = $(this).parents("tr").attr('data-LastName');
+          var MobileNo = $(this).parents("tr").attr('data-MobileNo');
+          var Email = $(this).parents("tr").attr('data-Email');
+          var DOB = $(this).parents("tr").attr('data-DOB');
+          var Qualification = $(this).parents("tr").attr('data-Qualification');
+  
+  
+      
+          $(this).parents("tr").find("td:eq(0)").html('<input name="edit_FirstName" value="'+FirstName+'">');
+          $(this).parents("tr").find("td:eq(1)").html('<input name="edit_LastName" value="'+LastName+'">');
+          $(this).parents("tr").find("td:eq(2)").html('<input name="edit_MobileNo" value="'+MobileNo+'">');
+          $(this).parents("tr").find("td:eq(3)").html('<input name="edit_Email" value="'+Email+'">');
+          $(this).parents("tr").find("td:eq(4)").html('<input name="edit_DOB" value="'+DOB+'">');
+          $(this).parents("tr").find("td:eq(5)").html('<input name="edit_Qualification" value="'+Qualification+'">');
+  
+      
+          $(this).parents("tr").find("td:eq(6)").prepend("<button class='btn btn-info btn-xs btn-update'>Update</button><button class='btn btn-warning btn-xs btn-cancel'>Cancel</button>")
+          $(this).hide();
+      });
+     
+      $("body").on("click", ".btn-cancel", function(){
+          
+          var FirstName = $(this).parents("tr").attr('data-FirstName');
+          var LastName = $(this).parents("tr").attr('data-LastName');
+          var MobileNo = $(this).parents("tr").attr('data-MobileNo');
+          var Email = $(this).parents("tr").attr('data-Email');
+          var DOB = $(this).parents("tr").attr('data-DOB');
+          var Qualification = $(this).parents("tr").attr('data-Qualification');
+          $(this).parents("tr").find("td:eq(0)").text(FirstName);
+          $(this).parents("tr").find("td:eq(1)").text(LastName);
+          $(this).parents("tr").find("td:eq(2)").text(MobileNo);
+          $(this).parents("tr").find("td:eq(3)").text(Email);
+          $(this).parents("tr").find("td:eq(4)").text(DOB);
+          $(this).parents("tr").find("td:eq(5)").text(Qualification);
+  
+          $(this).parents("tr").find(".btn-edit").show();
+          $(this).parents("tr").find(".btn-update").remove();
+          $(this).parents("tr").find(".btn-cancel").remove();
+      });
+     
+      $("body").on("click", ".btn-update", function(){
+          var FirstName = $(this).parents("tr").find("input[name='edit_FirstName']").val();
+          var LastName = $(this).parents("tr").find("input[name='edit_LastName']").val();
+          var MobileNo = $(this).parents("tr").find("input[name='edit_MobileNo']").val();
+          var Email = $(this).parents("tr").find("input[name='edit_Email']").val();
+          var DOB = $(this).parents("tr").find("input[name='edit_DOB']").val();
+          var Qualification = $(this).parents("tr").find("input[name='edit_Qualification']").val();
+     
+         
+          $(this).parents("tr").find("td:eq(0)").text(FirstName);
+          $(this).parents("tr").find("td:eq(1)").text(LastName);
+          $(this).parents("tr").find("td:eq(2)").text(MobileNo);
+          $(this).parents("tr").find("td:eq(3)").text(Email);
+          $(this).parents("tr").find("td:eq(4)").text(DOB);
+          $(this).parents("tr").find("td:eq(5)").text(Qualification);
+       
+         
+          $(this).parents("tr").attr('data-FirstName', FirstName);
+          $(this).parents("tr").attr('data-LastName', LastName);
+          $(this).parents("tr").attr('data-MobileNo',MobileNo);
+          $(this).parents("tr").attr('data-Email',Email);
+          $(this).parents("tr").attr('data-DOB',DOB);
+          $(this).parents("tr").attr('data-Qualification',Qualification);
+      
+          $(this).parents("tr").find(".btn-edit").show();
+          $(this).parents("tr").find(".btn-cancel").remove();
+          $(this).parents("tr").find(".btn-update").remove();
+      });
+      
+  </script>
+
+</body>
+
+</html>
